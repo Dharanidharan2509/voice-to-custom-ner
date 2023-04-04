@@ -1,0 +1,19 @@
+{
+  "name": "voice-to-text",
+  "version": "1.0.0",
+  "description": "Convert voice to text",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dharanidharan2509/voice-to-speech.git"
+  },
+  "author": "Dharanidharan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dharanidharan2509/voice-to-speech/issues"
+  },
+  "homepage": "https://github.com/Dharanidharan2509/voice-to-speech#readme"
+}
