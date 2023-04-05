@@ -22,12 +22,12 @@ function speechToText (options, callback) {
 }
 
 function startListening () {
+    final_transcript = "";
     recognition.start();
 }
 
 function stopListening () {
-    final_transcript = "";
-    recognition.stop();
+    recognition.abort();
 }
 
 export { speechToText, startListening, stopListening }
