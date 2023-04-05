@@ -19,8 +19,6 @@ function speechToText (options, callback) {
             }
         }
     }
-
-    return { startListening, stopListening }
 }
 
 function startListening () {
@@ -32,4 +30,4 @@ function stopListening () {
     recognition.stop();
 }
 
-export { speechToText }
+export { speechToText, startListening, stopListening }
