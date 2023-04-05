@@ -1,11 +1,11 @@
 const recognition = new webkitSpeechRecognition();
+var final_transcript = "";
 
 function speechToText (options, callback) {
     recognition.interimResults = options.interimResults
     recognition.lang = options.lang
     recognition.continuous = options.continuous
 
-    let final_transcript = "";
 
     recognition.onresult = (event) => {
         let interim_transcript = "";
@@ -26,6 +26,7 @@ function startListening () {
 }
 
 function stopListening () {
+    final_transcript = "";
     recognition.stop();
 }
 
