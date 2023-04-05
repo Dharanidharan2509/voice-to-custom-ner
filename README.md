@@ -1,13 +1,18 @@
 # voice-to-speech
+
 convert voice to text
 
 ## Install
-npm i voice-to-text-javascript
+
+`npm i voice-to-text-javascript`
 
 ## Description
-This simple library converts voice into text
+
+This simple javascript library converts voice into text
 
 ## Usage
+
+```
 import { speechToText, startListening, stopListening } from 'voice-to-text-javascript'
 
 function initialVoiceToSpeech () {
@@ -25,6 +30,7 @@ function start() {
 function stop() {
     startListening()
 }
+```
 
 interimResults - Does not wait for the user to complete finished speaking
 lang - Specifies the language
