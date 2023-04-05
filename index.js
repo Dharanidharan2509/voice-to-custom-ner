@@ -1,7 +1,7 @@
 const recognition = new webkitSpeechRecognition();
 var final_transcript = "";
 
-function speechToText (options, callback) {
+function speechToText (options, callback, errorCallback) {
     recognition.interimResults = options.interimResults
     recognition.lang = options.lang
     recognition.continuous = options.continuous
@@ -18,6 +18,10 @@ function speechToText (options, callback) {
                 callback(interim_transcript)
             }
         }
+    }
+
+    recognition.onerror = (err) => {
+        errorCallback(err)
     }
 }
 
