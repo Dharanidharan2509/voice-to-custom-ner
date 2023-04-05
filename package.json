@@ -1,6 +1,6 @@
 {
   "name": "voice-to-text-javascript",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Convert voice to text",
   "main": "index.js",
   "scripts": {
