@@ -1,7 +1,7 @@
 {
-  "name": "voice-to-text-javascript",
-  "version": "1.0.6",
-  "description": "Convert voice to text",
+  "name": "voice-to-custom-ner",
+  "version": "1.0.7",
+  "description": "This package converts voice to custom entity using azure NLP model.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
