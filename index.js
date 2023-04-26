@@ -258,3 +258,9 @@ class SpeechService {
         this.final_transcript = ""
     }
 }
+
+export {
+    createCustomNERProject,
+    SpeechService,
+    customEntityProject
+}

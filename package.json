@@ -1,6 +1,6 @@
 {
   "name": "voice-to-custom-ner",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "This package converts voice to custom entity using azure NLP model.",
   "main": "index.js",
   "scripts": {
@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Dharanidharan2509/voice-to-speech.git"
+    "url": "git+https://github.com/Dharanidharan2509/voice-to-custom-ner.git"
   },
   "author": "Dharanidharan",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Dharanidharan2509/voice-to-speech/issues"
+    "url": "https://github.com/Dharanidharan2509/voice-to-custom-ner/issues"
   },
-  "homepage": "https://github.com/Dharanidharan2509/voice-to-speech#readme"
+  "homepage": "https://github.com/Dharanidharan2509/voice-to-custom-ner#readme"
 }
