@@ -26,7 +26,7 @@ function createCustomNERProject (endPoint, subscriptionKey, config) {
             .catch(err => {
                 console.log(err)
             })
-    }
+    } else console.error("Please provide valid information!");
 }
 
 class customEntityProject {
@@ -198,32 +198,16 @@ function extractJobID (http) {
     return { jobID: match[1] }
 }
 
-// function speechToText () {
-// }
-
 function getResult (id) {
     obj.getSubmittedResult(id).then(res => {
         if (res.inProgress === 0) {
             console.log(res)
             console.log(res.items[0].results.documents)
-            // displayResultToBrowser(res.items[0].results.documents)
         } else {
             setTimeout(() => {
                 getResult(id)
             }, 400);
         }
-    })
-}
-
-
-function displayResultToBrowser (resultData) {
-    console.log('inside')
-    const data = resultData[0]
-    data.entities.forEach(res => {
-        let paragraph = document.createElement('p')
-        let text = document.createTextNode(`${res.category}: ${res.text} confidence: ${res.confidenceScore}`)
-        paragraph.appendChild(text)
-        document.getElementById('output-content').appendChild(paragraph)
     })
 }
 
