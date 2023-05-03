@@ -1,39 +1,40 @@
 # voice-to-speech
 
-convert voice to text
+convert voice to form filling
 
 ## Install
 
-`npm i voice-to-text-javascript`
+`npm i voice-to-form`
 
 ## Description
 
-This simple javascript library converts voice into text
+Voice to Form package is a software tool that converts spoken language into text and fills out digital forms, streamlining data entry and reducing user effort.
 
 ## Usage
 
 ```
-import { speechToText, startListening, stopListening } from 'voice-to-text-javascript'
+import { createCustomNERProject, SpeechService, CustomEntityProject } from 'voice-to-form'
 
-function initialVoiceToSpeech () {
-    speechToText({
-        interimResults: true,
-        lang: 'en',
-        continuous: true
-    }, callback, onError)
-}
+var speechToForm = new SpeechService(callback, endPoint, projectName, subscriptionKey, apiVersion, deploymentName)
 
-function start() {
-    startListening()
-}
+speechToForm.startListening()
 
-function stop() {
-    startListening()
-}
+speechToForm.stopListening()
+
+speechToForm.abortListening()
 ```
 
-interimResults - Does not wait for the user to complete finished speaking
-lang - Specifies the language
-continuous - Continue to listen for the user speech and will not stop listening
-callback - Function where the text will be returned
-onError - Function to handle error
+### Parameters
+
+- ***callback*** - callback function where you get the speech to text result while speaking
+- ***endPoint*** - Endpoint provided by azure storage account to make api calls
+- ***projectName*** - name of the project
+- ***subscriptionKey*** - subscriptionKey provided by azure storage account to make api calls
+- ***apiVersion*** - supported api version that listed in azure to make api calls
+- ***deploymentName*** - Deployment name for that particular project
+
+### Methods
+
+- ***.startListening()*** - Starts to listen for voice input
+- ***.stopListening()*** - stops the listening service and submits the voice data and return the extracted result
+- ***.abortListening()*** - aborts the listening service and will not be submitted
