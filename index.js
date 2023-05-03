@@ -29,7 +29,7 @@ function createCustomNERProject (endPoint, subscriptionKey, config) {
     } else console.error("Please provide valid information!");
 }
 
-class customEntityProject {
+class CustomEntityProject {
     constructor (endPoint, name, key, apiVersion) {
         this.endPoint = endPoint
         this.projectName = name
@@ -166,7 +166,6 @@ class customEntityProject {
 
 // api method
 function api ({method, url, headers, model, returnJob, statusCode}) {
-    // console.log(method, url, model)
     return new Promise((resolve, reject) => {
         const http = new XMLHttpRequest()
         http.open(method, url)
@@ -177,12 +176,10 @@ function api ({method, url, headers, model, returnJob, statusCode}) {
         http.onreadystatechange = function () {
             if (http.readyState === 4) {
                 if (http.status === (statusCode || 202)) {
-                    // console.log(http)
                     let response = returnJob ? extractJobID(http) : {}
                     if (http.responseText) response = { ...response, ...(JSON.parse(http.responseText)) }
                     resolve(response)
                 } else {
-                    // console.log(http)
                     let response = http.responseText ? JSON.parse(http.responseText) : { status: http.status }
                     reject({ ...response, ...{ status: http.status }})
                 }
@@ -198,23 +195,10 @@ function extractJobID (http) {
     return { jobID: match[1] }
 }
 
-function getResult (id) {
-    obj.getSubmittedResult(id).then(res => {
-        if (res.inProgress === 0) {
-            console.log(res)
-            console.log(res.items[0].results.documents)
-        } else {
-            setTimeout(() => {
-                getResult(id)
-            }, 400);
-        }
-    })
-}
-
 class SpeechService {
     constructor (callback, endPoint, projectName, subscriptionKey, apiVersion, deploymentName) {
         this.deploymentName = deploymentName
-        this.model = new customEntityProject(endPoint, projectName, subscriptionKey, apiVersion)
+        this.model = new CustomEntityProject(endPoint, projectName, subscriptionKey, apiVersion)
         this.recognition = new webkitSpeechRecognition();
         this.final_transcript = "";
         // const grammar = "#JSGF V1.0; grammar fields; public <field> = start | syfol | end | date | assigned to | members | status | priority | estimated | hours | description | end date ;";
@@ -225,7 +209,6 @@ class SpeechService {
         this.recognition.interimResults = true
         this.recognition.lang = 'en'
         this.recognition.continuous = true
-        let = interim_transcript = '';
         this.recognition.onresult = (event) => {
             for (let i = event.resultIndex; i < event.results.length; ++i) {
                 if (event.results[i].isFinal) {
@@ -246,21 +229,30 @@ class SpeechService {
         this.final_transcript = "";
         this.recognition.start();
     }
-    
-    stopListening () {
-        console.log(this.final_transcript)
+
+    abortListening () {
         this.recognition.abort();
-        this.model.submitTextToAnalyze(this.deploymentName, this.final_transcript).then(res => {
-            setTimeout(() => {
-                getResult(res.jobID)
-            }, 500);
-        })
+    }
+    
+    async stopListening () {
+        this.recognition.abort();
+        let data = await this.model.submitTextToAnalyze(this.deploymentName, this.final_transcript)
+        let result = await this.getResult(data.jobID)
         this.final_transcript = ""
+        return result
+    }
+
+    async getResult (id) {
+        let data = await this.model.getSubmittedResult(id)
+        if (data.inProgress > 0) {
+            await new Promise(resolve => setTimeout(resolve, 750))
+            return this.getResult(id)
+        } else return data
     }
 }
 
 export {
     createCustomNERProject,
     SpeechService,
-    customEntityProject
+    CustomEntityProject
 }

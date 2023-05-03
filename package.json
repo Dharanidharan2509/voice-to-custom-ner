@@ -1,6 +1,6 @@
 {
   "name": "voice-to-custom-ner",
-  "version": "2.0.1",
+  "version": "2.0.3",
   "description": "This package converts voice to custom entity using azure NLP model.",
   "main": "index.js",
   "type": "module",
